@@ -21,6 +21,9 @@ const flagString = computed(() => {
 let reg = useStorage('reg', '')
 //正则表达式并且包含修饰符
 const regex = computed(() => {
+  if (!reg.value.trim()) {
+    return null
+  }
   try {
     return new RegExp(reg.value, flagString.value) // 去掉前面的斜杠
   } catch (e) {
@@ -35,17 +38,30 @@ let textareaContent = useStorage('textareaContent', '')
 let replaceText = ref('')
 
 // 匹配结果
+// const matchResult = computed(() => {
+//   if (regex.value && textareaContent.value) {
+//     // 进行匹配,对有无全局匹配使用不同函数
+//     if (flags.value.includes('g')) {
+//       return [...textareaContent.value.matchAll(regex.value)]
+//     } else {
+//       return [textareaContent.value.match(regex.value)]
+//     }
+//   } else {
+//     return []
+//   }
+// })
 const matchResult = computed(() => {
-  if (regex.value && textareaContent.value) {
-    // 进行匹配,对有无全局匹配使用不同函数
-    if (flags.value.includes('g')) {
-      return [...textareaContent.value.matchAll(regex.value)]
-    } else {
-      return [textareaContent.value.match(regex.value)]
-    }
-  } else {
+  if (!regex.value || !textareaContent.value) {
     return []
   }
+
+  if (flags.value.includes('g')) {
+    return [...textareaContent.value.matchAll(regex.value)]
+  }
+
+  const match = textareaContent.value.match(regex.value)
+
+  return match ? [match] : []
 })
 // 匹配结果索引
 // const matchResultIndex = computed(() => {
@@ -192,34 +208,34 @@ const matchHighlight = computed(() => {
   return [first[0]]
 })
 // 2.元组数高亮字符串
-// const groupHighlight = computed(() => {
-//   if (!flags.value || !matchResult.value) return []
-//   if (flags.value.includes('g')) {
-//     let result = []
-//     matchResult.value.forEach((item) => {
-//       result.push(item.slice(1, item.length))
-//     })
-//     return result
-//   } else {
-//     return [matchResult.value[0].slice(1, matchResult.value[0].length)]
-//   }
-// })
 const groupHighlight = computed(() => {
-  const list = matchResult.value ?? []
-
-  if (!Array.isArray(list) || list.length === 0) return []
-
+  if (!flags.value || matchResult.value.length === 0) return []
   if (flags.value.includes('g')) {
-    return list
-      .filter((item) => typeof item === 'string' && item.length > 0)
-      .map((item) => item.slice(1))
+    let result = []
+    matchResult.value.forEach((item) => {
+      result.push(item.slice(1, item.length))
+    })
+    return result
+  } else {
+    return [matchResult.value[0].slice(1, matchResult.value[0].length)]
   }
-
-  const first = list[0]
-  if (typeof first !== 'string') return []
-
-  return [first.slice(1)]
 })
+// const groupHighlight = computed(() => {
+//   const list = matchResult.value ?? []
+
+//   if (!Array.isArray(list) || list.length === 0) return []
+
+//   if (flags.value.includes('g')) {
+//     return list
+//       .filter((item) => typeof item === 'string' && item.length > 0)
+//       .map((item) => item.slice(1))
+//   }
+
+//   const first = list[0]
+//   if (typeof first !== 'string') return []
+
+//   return [first.slice(1)]
+// })
 /* 
 需要传出
 textareaContent测试文本
