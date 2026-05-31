@@ -122,15 +122,18 @@ const matchCount = computed(() => {
   //   return 1
   // }
 
-  if (matchResult.value) {
-    if (flags.value.includes('g')) {
-      return matchResult.value.length
-    } else {
-      return 1
-    }
-  } else {
-    return 0
-  }
+  // if (matchResult.value) {
+  //   if (flags.value.includes('g')) {
+  //     return matchResult.value.length
+  //   } else {
+  //     return 1
+  //   }
+  // } else {
+  //   return 0
+  // }
+  const list = matchResult.value ?? []
+
+  return list.length
 })
 // 3.捕获组数
 // const groupCount = computed(() => {
