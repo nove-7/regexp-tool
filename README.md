@@ -1,44 +1,21 @@
-# regexp-tool
+# 🔍 Regex 工具（Vue3 + Element Plus）
 
-This template should help get you started developing with Vue 3 in Vite.
+一个基于 Vue3 + Element Plus 的正则表达式可视化工具，支持实时匹配、替换、高亮展示以及常用正则查询。
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🚀 在线预览
 
-## Recommended Browser Setup
+（如果有部署地址可以写这里，比如 GitHub Pages / Vercel）
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+---
 
-## Customize configuration
+## ✨ 功能特点
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- 🧪 实时正则匹配
+- 🎯 匹配结果高亮显示
+- 🔁 Replace 替换预览
+- 📊 捕获组解析
+- 📚 常用正则表达式库
+- 📋 一键复制正则表达式
+- ⚡ 响应式交互体验
