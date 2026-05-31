@@ -116,10 +116,20 @@ const strLength = computed(() => {
 })
 // 2.匹配数量
 const matchCount = computed(() => {
-  if (flags.value.includes('g')) {
-    return matchResult.value.length
+  // if (flags.value.includes('g')) {
+  //   return matchResult.value.length
+  // } else {
+  //   return 1
+  // }
+
+  if (matchResult.value) {
+    if (flags.value.includes('g')) {
+      return matchResult.value.length
+    } else {
+      return 1
+    }
   } else {
-    return 1
+    return 0
   }
 })
 // 3.捕获组数
