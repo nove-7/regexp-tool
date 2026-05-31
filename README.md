@@ -6,7 +6,7 @@
 
 ## 在线预览
 
-（如果有部署地址可以写这里，比如 GitHub Pages / Vercel）
+https://nove-7.github.io/regexp-tool/
 
 ---
 ## 用途
